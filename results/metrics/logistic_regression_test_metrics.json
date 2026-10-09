@@ -1,0 +1,24 @@
+{
+  "metrics": {
+    "accuracy": 0.7642,
+    "precision_macro": 0.7637,
+    "precision_weighted": 0.7641,
+    "recall_macro": 0.7634,
+    "recall_weighted": 0.7642,
+    "f1_macro": 0.7635,
+    "f1_weighted": 0.7641,
+    "specificity": 0.747,
+    "roc_auc": 0.8432,
+    "log_loss": 0.5257,
+    "mean_confidence": 0.6584,
+    "median_confidence": 0.6478,
+    "high_confidence_ratio": 0.217,
+    "training_time_sec": 0.0,
+    "inference_time_ms_per_sample": 0.0003,
+    "model_name": "logistic_regression",
+    "dataset_split": "test",
+    "num_test_samples": 530
+  },
+  "confusion_matrix_figure": "results/figures/logistic_regression_test_confusion_matrix.png",
+  "roc_curve_figure": "results/figures/logistic_regression_test_roc_curve.png"
+}

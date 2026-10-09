@@ -1,0 +1,10 @@
+metric,value
+Raw Records,3553
+Cleaned & Deduplicated Records,3532
+Training Samples (70%),2472
+Validation Samples (15%),530
+Test Samples (15%),530
+Train Stress Count (Class 1),1294
+Train Non-Stress Count (Class 0),1178
+Test Stress Count (Class 1),277
+Test Non-Stress Count (Class 0),253
