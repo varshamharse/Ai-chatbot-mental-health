@@ -1,0 +1,54 @@
+{
+  "dataset": {
+    "records": 3553,
+    "columns": 116,
+    "file": "mental_health_dataset.csv"
+  },
+  "target": {
+    "column": "label",
+    "number_of_classes": 2,
+    "classes": [
+      1,
+      0
+    ],
+    "counts": {
+      "1": 1857,
+      "0": 1696
+    },
+    "percentages": {
+      "1": 52.27,
+      "0": 47.73
+    }
+  },
+  "missing_values": {
+    "total_missing_cells": 0,
+    "columns_with_missing": {}
+  },
+  "duplicates": {
+    "exact_row_duplicates": 0,
+    "text_duplicates": 21,
+    "duplicate_percentage": 0.59
+  },
+  "text_statistics": {
+    "text_column": "text",
+    "mean_word_count": 84.12,
+    "median_word_count": 78.0,
+    "min_word_count": 3,
+    "max_word_count": 284,
+    "std_word_count": 44.5,
+    "mean_char_length": 454.82,
+    "min_char_length": 15,
+    "max_char_length": 1426
+  },
+  "class_distribution": {
+    "balance_status": "Balanced",
+    "majority_minority_ratio": 1.09,
+    "majority_class": "1 (Stress)",
+    "minority_class": "0 (Non-Stress)"
+  },
+  "outliers": {
+    "upper_bound_words": 203,
+    "outlier_count": 142,
+    "outlier_percentage": 4.0
+  }
+}

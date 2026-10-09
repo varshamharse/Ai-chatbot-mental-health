@@ -1,0 +1,8 @@
+preprocessing:
+  lowercase: true
+  remove_urls: true
+  remove_html: true
+  remove_punctuation: false
+  lemmatize: true
+  stopwords_removal: true
+  max_sequence_length: 128

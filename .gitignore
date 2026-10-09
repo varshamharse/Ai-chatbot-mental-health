@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Data & Models (Large Files)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/checkpoints/*
+models/tokenizer/*
+models/vectorizers/*
+models/best_model/*
+!models/.gitkeep
+
+# Environment & Logs
+.env
+logs/*
+!logs/.gitkeep
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints

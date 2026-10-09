@@ -1,0 +1,10 @@
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - specificity
+    - roc_auc
+  save_plots: true
+  output_dir: "results/"

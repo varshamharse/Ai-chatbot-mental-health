@@ -1,0 +1,54 @@
+dataset:
+  name: "mental_health_dataset"
+  filename: "mental_health_dataset.csv"
+  format: "csv"
+  path: "data/raw/mental_health_dataset.csv"
+  num_records: 3553
+  num_features: 116
+
+schema:
+  text_column: "text"
+  label_column: "label"
+  secondary_text_column: "subreddit"
+  secondary_label_column: "subreddit"
+  id_column: "post_id"
+
+task:
+  primary:
+    name: "Stress Classification"
+    type: "binary_classification"
+    target_column: "label"
+    num_classes: 2
+    classes:
+      0: "Non-Stress"
+      1: "Stress"
+  secondary:
+    name: "Subreddit Domain Classification"
+    type: "multiclass_classification"
+    target_column: "subreddit"
+    num_classes: 10
+    classes:
+      - "ptsd"
+      - "relationships"
+      - "anxiety"
+      - "domesticviolence"
+      - "assistance"
+      - "survivorsofabuse"
+      - "homeless"
+      - "almosthomeless"
+      - "stress"
+      - "food_pantry"
+
+split:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+  random_seed: 42
+  stratify: true
+
+validation:
+  allow_missing_text: false
+  allow_missing_labels: false
+  duplicate_check: true
+  leakage_check: true
+  min_text_length: 3

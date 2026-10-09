@@ -1,0 +1,6 @@
+metric,value
+total_records,3553
+exact_row_duplicates,0
+text_column_duplicates,21
+text_duplicate_percentage,0.59
+duplicate_post_ids,624

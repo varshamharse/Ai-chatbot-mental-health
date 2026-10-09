@@ -1,0 +1,14 @@
+column_name,data_type,non_null_count,missing_count,missing_percentage,unique_values
+subreddit,object,3553,0,0.0,10
+post_id,object,3553,0,0.0,2929
+sentence_range,object,3553,0,0.0,194
+text,object,3553,0,0.0,3532
+id,int64,3553,0,0.0,3553
+label,int64,3553,0,0.0,2
+confidence,float64,3553,0,0.0,16
+social_timestamp,int64,3553,0,0.0,2929
+social_karma,int64,3553,0,0.0,159
+syntax_ari,float64,3553,0,0.0,3351
+lex_liwc_WC,float64,3553,0,0.0,207
+syntax_fk_grade,float64,3553,0,0.0,3098
+sentiment,float64,3553,0,0.0,2333

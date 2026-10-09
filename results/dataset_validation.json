@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "dataset_shape": {
+    "rows": 3553,
+    "columns": 116
+  },
+  "schema": {
+    "text_column": "text",
+    "label_column": "label",
+    "secondary_text_column": "subreddit",
+    "secondary_label_column": "subreddit",
+    "id_column": "post_id"
+  },
+  "missing_values": {
+    "total_missing_cells": 0,
+    "columns_with_missing": {}
+  },
+  "duplicates": {
+    "exact_row_duplicates": 0,
+    "text_duplicates": 21,
+    "duplicate_percentage": 0.0
+  },
+  "text_quality": {
+    "empty_text_records": 0,
+    "short_text_records_lt_3_words": 0,
+    "avg_char_length": 454.82,
+    "min_char_length": 15,
+    "max_char_length": 1426,
+    "avg_word_count": 84.12
+  },
+  "target_analysis": {
+    "primary": {
+      "label_column": "label",
+      "task_type": "Binary Classification",
+      "task_name": "Stress Classification",
+      "number_of_classes": 2,
+      "class_names": {
+        "0": "Non-Stress",
+        "1": "Stress"
+      },
+      "class_distribution": {
+        "0": 1696,
+        "1": 1857
+      },
+      "class_percentages": {
+        "0": 47.73,
+        "1": 52.27
+      },
+      "class_balance_status": "Balanced"
+    },
+    "secondary": {
+      "label_column": "subreddit",
+      "task_type": "Multiclass Classification",
+      "task_name": "Subreddit Domain Classification",
+      "number_of_classes": 10,
+      "class_distribution": {
+        "ptsd": 711,
+        "relationships": 694,
+        "anxiety": 650,
+        "domesticviolence": 388,
+        "assistance": 355,
+        "survivorsofabuse": 315,
+        "homeless": 220,
+        "almosthomeless": 99,
+        "stress": 78,
+        "food_pantry": 43
+      }
+    }
+  },
+  "data_leakage": {
+    "identical_text_conflicting_labels": 0,
+    "duplicate_post_ids": 624,
+    "text_duplicates": 21,
+    "train_test_split_column_present": false,
+    "leakage_risk_detected": true,
+    "recommendation": "Deduplicate text samples prior to train/val/test splitting in Step 3."
+  },
+  "issues": [
+    "Found 21 duplicate text samples across records in raw dataset.",
+    "Found 624 recurring post_ids due to multi-sentence post segmentation."
+  ]
+}
