@@ -2,7 +2,19 @@ preprocessing:
   lowercase: true
   remove_urls: true
   remove_html: true
+  expand_contractions: true
+  remove_special_chars: true
   remove_punctuation: false
   lemmatize: true
   stopwords_removal: true
-  max_sequence_length: 128
+  preserve_sentiment_negations: true
+  max_sequence_length: 256
+  min_token_length: 2
+
+features:
+  vectorizer: "tfidf"
+  max_features: 5000
+  ngram_range: [1, 2]
+  sublinear_tf: true
+  min_df: 2
+  max_df: 0.95

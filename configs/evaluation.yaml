@@ -1,10 +1,25 @@
 evaluation:
   metrics:
     - accuracy
+    - confidence
     - precision
     - recall
     - f1_score
     - specificity
     - roc_auc
-  save_plots: true
+    - log_loss
+  multiclass_averaging: "weighted"
+  confidence_analysis:
+    calculate_mean_confidence: true
+    calculate_class_confidence: true
+    confidence_threshold: 0.5
+  plots:
+    save_plots: true
+    confusion_matrix: true
+    roc_curve: true
+    precision_recall_curve: true
+    dpi: 300
   output_dir: "results/"
+  figures_dir: "results/figures/"
+  confusion_matrices_dir: "results/confusion_matrices/"
+  roc_curves_dir: "results/roc_curves/"

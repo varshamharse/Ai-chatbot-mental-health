@@ -1,35 +1,39 @@
-"""Naive Bayes model wrapper for mental health text classification."""
+"""K-Nearest Neighbors (KNN) classifier for mental health text classification."""
 
 import os
 import pickle
 from typing import Optional
 import numpy as np
-from sklearn.naive_bayes import MultinomialNB, ComplementNB
+from sklearn.neighbors import KNeighborsClassifier
 
 
-class NaiveBayesModel:
-    """Multinomial / Complement Naive Bayes classifier."""
+class KNNModel:
+    """K-Nearest Neighbors classifier with distance weighting and probability prediction."""
 
     def __init__(
         self,
-        alpha: float = 1.0,
-        fit_prior: bool = True,
-        use_complement: bool = False,
+        n_neighbors: int = 5,
+        weights: str = "distance",
+        metric: str = "cosine",
+        n_jobs: int = -1,
         **kwargs
     ):
-        self.alpha = alpha
-        self.fit_prior = fit_prior
-        self.use_complement = use_complement
+        self.n_neighbors = n_neighbors
+        self.weights = weights
+        self.metric = metric
+        self.n_jobs = n_jobs
         self.kwargs = kwargs
-
-        if self.use_complement:
-            self.model = ComplementNB(alpha=self.alpha, fit_prior=self.fit_prior, **self.kwargs)
-        else:
-            self.model = MultinomialNB(alpha=self.alpha, fit_prior=self.fit_prior, **self.kwargs)
+        self.model = KNeighborsClassifier(
+            n_neighbors=self.n_neighbors,
+            weights=self.weights,
+            metric=self.metric,
+            n_jobs=self.n_jobs,
+            **self.kwargs
+        )
         self.is_fitted = False
 
     def fit(self, X, y):
-        """Fit model on feature matrix and target labels."""
+        """Fit KNN model on features and target labels."""
         self.model.fit(X, y)
         self.is_fitted = True
         return self
@@ -48,7 +52,7 @@ class NaiveBayesModel:
         with open(file_path, "wb") as f:
             pickle.dump(self.model, f)
 
-    def load(self, file_path: str) -> "NaiveBayesModel":
+    def load(self, file_path: str) -> "KNNModel":
         """Load model artifact from disk."""
         with open(file_path, "rb") as f:
             self.model = pickle.load(f)

@@ -1,14 +1,18 @@
 dataset:
   name: "mental_health_dataset"
-  filename: "mental_health_dataset.csv"
+  filename: "Dreaddit_combine_data.csv"
   format: "csv"
-  path: "data/raw/mental_health_dataset.csv"
+  path: "Dataset/Dreaddit_combine_data.csv"
+  fallback_paths:
+    - "data/raw/mental_health_dataset.csv"
+    - "Dataset/Dreaddit_combine_data.csv"
   num_records: 3553
   num_features: 116
 
 schema:
   text_column: "text"
   label_column: "label"
+  confidence_column: "confidence"
   secondary_text_column: "subreddit"
   secondary_label_column: "subreddit"
   id_column: "post_id"

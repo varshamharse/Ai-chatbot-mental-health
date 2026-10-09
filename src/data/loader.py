@@ -1,12 +1,13 @@
 """Dataset Loader Module for AI Chatbot Mental Health Project.
 
 Reads raw dataset files based on configuration settings without modifying raw files.
+Supports automatic path resolution and format handling.
 """
 
 import os
 import yaml
 import pandas as pd
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 
 class DatasetLoader:
@@ -14,15 +15,56 @@ class DatasetLoader:
 
     def __init__(self, config_path: str = "configs/dataset.yaml"):
         """Initialize DatasetLoader with configuration path."""
-        self.config_path = config_path
-        self.config = self._load_config(config_path)
+        self.config_path = self._resolve_path(config_path)
+        self.config = self._load_config(self.config_path)
+
+    def _resolve_path(self, path: str) -> str:
+        """Resolve path relative to project root if not found directly."""
+        if os.path.exists(path):
+            return path
+        # Check relative to repo root (one level up if inside scripts/src)
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        candidate = os.path.join(base_dir, path)
+        if os.path.exists(candidate):
+            return candidate
+        return path
 
     def _load_config(self, config_path: str) -> Dict[str, Any]:
         """Load YAML dataset configuration file."""
-        if not os.path.exists(config_path):
+        resolved = self._resolve_path(config_path)
+        if not os.path.exists(resolved):
             raise FileNotFoundError(f"Configuration file not found: {config_path}")
-        with open(config_path, "r", encoding="utf-8") as f:
+        with open(resolved, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
+
+    def _find_dataset_file(self, target_path: Optional[str]) -> str:
+        """Find dataset file among configured path and fallbacks."""
+        candidates = []
+        if target_path:
+            candidates.append(target_path)
+        
+        configured_path = self.config.get("dataset", {}).get("path")
+        if configured_path and configured_path not in candidates:
+            candidates.append(configured_path)
+
+        fallbacks = self.config.get("dataset", {}).get("fallback_paths", [])
+        for fb in fallbacks:
+            if fb not in candidates:
+                candidates.append(fb)
+
+        # Standard repository dataset locations
+        candidates.extend([
+            "Dataset/Dreaddit_combine_data.csv",
+            "data/raw/mental_health_dataset.csv",
+            "data/raw/Dreaddit_combine_data.csv"
+        ])
+
+        for c in candidates:
+            resolved = self._resolve_path(c)
+            if os.path.exists(resolved):
+                return resolved
+
+        raise FileNotFoundError(f"Raw dataset file not found among candidates: {candidates}")
 
     def load_dataset(self, file_path: Optional[str] = None) -> pd.DataFrame:
         """Load the dataset into a pandas DataFrame.
@@ -33,32 +75,26 @@ class DatasetLoader:
         Returns:
             pd.DataFrame: Loaded immutable raw dataframe.
         """
-        target_path = file_path or self.config.get("dataset", {}).get("path")
-        if not target_path:
-            raise ValueError("Dataset path is not specified in config or arguments.")
-
-        if not os.path.exists(target_path):
-            raise FileNotFoundError(f"Raw dataset file not found at path: {target_path}")
-
+        resolved_path = self._find_dataset_file(file_path)
         file_format = self.config.get("dataset", {}).get("format", "").lower()
         if not file_format:
-            file_format = os.path.splitext(target_path)[1].lstrip(".").lower()
+            file_format = os.path.splitext(resolved_path)[1].lstrip(".").lower()
 
         try:
             if file_format == "csv":
-                df = pd.read_csv(target_path)
+                df = pd.read_csv(resolved_path)
             elif file_format == "json":
-                df = pd.read_json(target_path)
+                df = pd.read_json(resolved_path)
             elif file_format == "jsonl":
-                df = pd.read_json(target_path, lines=True)
+                df = pd.read_json(resolved_path, lines=True)
             elif file_format == "parquet":
-                df = pd.read_parquet(target_path)
+                df = pd.read_parquet(resolved_path)
             elif file_format in ["xlsx", "xls"]:
-                df = pd.read_excel(target_path)
+                df = pd.read_excel(resolved_path)
             else:
                 raise ValueError(f"Unsupported dataset file format: {file_format}")
         except Exception as e:
-            raise RuntimeError(f"Failed to load dataset file '{target_path}': {str(e)}")
+            raise RuntimeError(f"Failed to load dataset file '{resolved_path}': {str(e)}")
 
         self._validate_schema(df)
         return df
