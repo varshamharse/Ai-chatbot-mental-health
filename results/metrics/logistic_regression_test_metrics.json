@@ -14,7 +14,7 @@
     "median_confidence": 0.6478,
     "high_confidence_ratio": 0.217,
     "training_time_sec": 0.0,
-    "inference_time_ms_per_sample": 0.0003,
+    "inference_time_ms_per_sample": 0.0005,
     "model_name": "logistic_regression",
     "dataset_split": "test",
     "num_test_samples": 530

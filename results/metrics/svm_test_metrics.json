@@ -14,7 +14,7 @@
     "median_confidence": 0.774,
     "high_confidence_ratio": 0.5472,
     "training_time_sec": 0.0,
-    "inference_time_ms_per_sample": 0.3438,
+    "inference_time_ms_per_sample": 0.345,
     "model_name": "svm",
     "dataset_split": "test",
     "num_test_samples": 530

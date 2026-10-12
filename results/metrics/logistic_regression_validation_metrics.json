@@ -13,7 +13,7 @@
     "mean_confidence": 0.6571,
     "median_confidence": 0.6379,
     "high_confidence_ratio": 0.2132,
-    "training_time_sec": 0.0078,
+    "training_time_sec": 0.0105,
     "inference_time_ms_per_sample": 0.0003,
     "model_name": "logistic_regression",
     "dataset_split": "validation",

@@ -14,7 +14,7 @@
     "median_confidence": 0.654,
     "high_confidence_ratio": 0.2302,
     "training_time_sec": 0.0,
-    "inference_time_ms_per_sample": 0.0005,
+    "inference_time_ms_per_sample": 0.0004,
     "model_name": "naive_bayes",
     "dataset_split": "test",
     "num_test_samples": 530

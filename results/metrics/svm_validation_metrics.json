@@ -13,8 +13,8 @@
     "mean_confidence": 0.7561,
     "median_confidence": 0.7631,
     "high_confidence_ratio": 0.5189,
-    "training_time_sec": 4.6256,
-    "inference_time_ms_per_sample": 0.346,
+    "training_time_sec": 4.6232,
+    "inference_time_ms_per_sample": 0.3443,
     "model_name": "svm",
     "dataset_split": "validation",
     "num_test_samples": 530

@@ -14,7 +14,7 @@
     "median_confidence": 0.792,
     "high_confidence_ratio": 0.5245,
     "training_time_sec": 0.0,
-    "inference_time_ms_per_sample": 0.0877,
+    "inference_time_ms_per_sample": 0.1063,
     "model_name": "knn",
     "dataset_split": "test",
     "num_test_samples": 530

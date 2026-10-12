@@ -13,8 +13,8 @@
     "mean_confidence": 0.6413,
     "median_confidence": 0.62,
     "high_confidence_ratio": 0.1642,
-    "training_time_sec": 0.1274,
-    "inference_time_ms_per_sample": 0.046,
+    "training_time_sec": 0.1292,
+    "inference_time_ms_per_sample": 0.0263,
     "model_name": "random_forest",
     "dataset_split": "validation",
     "num_test_samples": 530

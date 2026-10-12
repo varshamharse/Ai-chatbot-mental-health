@@ -13,8 +13,8 @@
     "mean_confidence": 0.7335,
     "median_confidence": 0.7762,
     "high_confidence_ratio": 0.5038,
-    "training_time_sec": 0.0011,
-    "inference_time_ms_per_sample": 0.0805,
+    "training_time_sec": 0.001,
+    "inference_time_ms_per_sample": 0.0986,
     "model_name": "knn",
     "dataset_split": "validation",
     "num_test_samples": 530
